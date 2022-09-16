@@ -3,7 +3,7 @@ import Proc from 'App/Models/Proc'
 import User from 'App/Models/User'
 
 export default class UsersController {
-    public async create( {request, response}: HttpContextContract) {
+    public async create( {request}: HttpContextContract) {
 
         const user = new User()
 
@@ -36,7 +36,7 @@ export default class UsersController {
         }
     }
 
-    public async takeDocDados({ auth, request , response} : HttpContextContract){
+    public async takeDocDados({ auth, request } : HttpContextContract){
 
         const check = await auth.use('api').authenticate()
 
@@ -44,13 +44,13 @@ export default class UsersController {
 
         let procFilter:any = []
 
-        const procFound = (await Proc.all()).map((itens) => {
-            if(itens.users_id === user?.id){
-                procFilter.push(itens)
-            } else {
+        // const procFound = (await Proc.all()).map((itens) => {
+        //     if(itens.users_id === user?.id){
+        //         procFilter.push(itens)
+        //     } else {
                 
-            }
-        })
+        //     }
+        // })
 
         if(check){
             return {

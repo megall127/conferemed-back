@@ -1,13 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Proc from "App/Models/Proc"
-import User from 'App/Models/User';
 
 
 export default class ProcsController {
 
 
-    public async create( {request, response, auth}: HttpContextContract) {
+    public async create( {request, auth}: HttpContextContract) {
 
     const proc = new Proc();
 
@@ -33,7 +32,7 @@ export default class ProcsController {
     }}
 
 
-    public async editDados( {auth, request, response }){
+    public async editDados( {auth, request }){
 
         const proc = await Proc.findOrFail(request.input("id"))
 

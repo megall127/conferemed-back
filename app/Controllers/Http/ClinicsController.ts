@@ -1,9 +1,9 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import Clinic from 'App/Models/Clinic'
 
 export default class ClinicsController {
 
-    public async create( {request, response}: HttpContextContract) {
+    public async create( {request}: HttpContextContract) {
 
         const user = new Clinic()
 
