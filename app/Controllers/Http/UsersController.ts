@@ -1,5 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Proc from 'App/Models/Proc'
 import User from 'App/Models/User'
 
 export default class UsersController {
@@ -80,7 +79,6 @@ export default class UsersController {
 
     public async getAllDoctors({auth}: HttpContextContract){
 
-        const user = new User()
 
         const check = await auth.use('api').authenticate()
 
