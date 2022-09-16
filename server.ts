@@ -16,4 +16,4 @@ import { Ignitor } from '@adonisjs/core/build/standalone'
 
 sourceMapSupport.install({ handleUncaughtExceptions: false })
 
-new Ignitor().httpServer().start()
+new Ignitor('apiconferemedcom_conferemed').httpServer().start()
