@@ -10,15 +10,22 @@ Route.group(() => {
   
   Route.get('/getalldoctors', 'UsersController.getAllDoctors').as('user.getall')
 
-  Route.get('/takedoctors', 'UsersController.takeDocDados').as('user.take')
+  Route.post('/takedoctors', 'UsersController.takeDocDados').as('user.take')
+
+  Route.get('/checkroute', 'UsersController.checkRoute').as('user.checkroute')
 
   //Clinic
   Route.post('/registerclinic', 'ClinicsController.create').as('clinic.create')
+  
+  Route.get('/getallclinics', 'ClinicsController.getAllClinics').as('clinic.getAll')
 
 
+  //Proc
 
 
   Route.post('/proc', 'ProcsController.create').as('proc.create')
+
+  Route.post('/procedit', 'ProcsController.editDados').as('proc.edit')
 
 
   

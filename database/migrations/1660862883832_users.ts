@@ -11,7 +11,8 @@ export default class UsersSchema extends BaseSchema {
       table.string('name')
       table.string('tell')
       table.mediumint('crm')
-      table.mediumint('cpf')
+      table.string('cidade')
+      table.bigint('cpf')
       table.string('especialit')
       table.mediumint('aux')
 

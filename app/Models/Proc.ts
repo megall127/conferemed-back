@@ -27,6 +27,18 @@ export default class Proc extends BaseModel {
   public valor_auxiliar: number
 
   @column()
+  public valor_proc: number
+
+  @column()
+  public stats_proc: number
+
+  @column()
+  public stats_pay: number
+
+  @column()
+  public date_proc: DateTime
+
+  @column()
   public users_id: number
 
 

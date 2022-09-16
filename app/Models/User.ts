@@ -23,6 +23,9 @@ export default class User extends BaseModel {
   public crm: number
 
   @column()
+  public cidade: string
+
+  @column()
   public cpf: number
 
   @column()

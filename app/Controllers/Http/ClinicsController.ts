@@ -15,4 +15,15 @@ export default class ClinicsController {
     }
 
 
+    public async getAllClinics({auth}: HttpContextContract) {
+
+        const check = await auth.use('api').authenticate()
+
+        if(check){
+            return Clinic.all()
+        } else {
+            return "Nao Permitido"
+        }
+    }
+
 }

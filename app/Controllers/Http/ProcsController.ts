@@ -21,13 +21,50 @@ export default class ProcsController {
         proc.valor_repasse = request.input('valor_repasse')
         proc.quantidade = request.input('quantidade')
         proc.valor_auxiliar = request.input('valor_auxiliar')
-        proc.valor_auxiliar = request.input('valor_auxiliar')
-        proc.users_id = <number>auth.user?.id
+        proc.valor_proc = request.input('valor_proc')
+        proc.stats_proc = request.input('stats_proc')
+        proc.stats_pay = request.input('stats_pay')
+        proc.date_proc = request.input('date_proc')
+        proc.users_id = request.input('id')
         
         await proc.save()
     } else {
         return "Nao deu"
     }}
+
+
+    public async editDados( {auth, request, response }){
+
+        const proc = await Proc.findOrFail(request.input("id"))
+
+        const newStats = request.input("newStats")
+        const newPayment = request.input("newPayment")
+
+
+        const checkValue = (newValue: any, value: any) => {
+            if(newValue === null){
+                return value
+            } else {
+                return newValue
+            }
+        } 
+
+        try {   
+            await auth.check()
+            proc.stats_proc = checkValue(newStats, proc.stats_proc);  
+            proc.stats_pay = checkValue(newPayment, proc.stats_pay);  
+            await proc?.save()
+
+            return{
+                message: "Editado com Sucesso!",
+                data: newStats
+            }
+        } catch (error) {
+            return{
+                message: "Falhou"
+            }
+        }
+    }
 
 
 }

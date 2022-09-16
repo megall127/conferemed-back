@@ -12,11 +12,14 @@ export default class UsersController {
         user.name = request.input('name')
         user.tell = request.input('tell')
         user.crm = request.input('crm')
+        user.cidade = request.input('cidade')
         user.cpf = request.input('cpf')
         user.especialit = request.input('especialit')
         user.aux = request.input('aux')
 
         await user.save()
+
+        return user
     }
 
     public async login({auth, request, response}:HttpContextContract) {
@@ -37,10 +40,12 @@ export default class UsersController {
 
         const check = await auth.use('api').authenticate()
 
+        const user = await User.findBy('id', request.input('id'))
+
         let procFilter:any = []
 
         const procFound = (await Proc.all()).map((itens) => {
-            if(itens.users_id === auth.user?.id){
+            if(itens.users_id === user?.id){
                 procFilter.push(itens)
             } else {
                 
@@ -50,7 +55,7 @@ export default class UsersController {
         if(check){
             return {
                 data: {
-                    doctor: auth.user,
+                    doctor: user,
                     proc: procFilter
                 }
                
@@ -60,7 +65,30 @@ export default class UsersController {
         }   
     }
 
-    public async getAllDoctors({}: HttpContextContract){
+
+    public async checkRoute({auth} : HttpContextContract) {
+
+        const check = await auth.use('api').authenticate()
         
+        if(check){
+            return 1    
+        } else {
+            return 2
+        }
+
+    }
+
+    public async getAllDoctors({auth}: HttpContextContract){
+
+        const user = new User()
+
+        const check = await auth.use('api').authenticate()
+
+
+        if(check){
+            return User.all()
+        } else {
+            return 'Falhou'
+        }
     }
 }
