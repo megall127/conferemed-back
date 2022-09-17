@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Proc from 'App/Models/Proc'
 import User from 'App/Models/User'
 
 export default class UsersController {
@@ -46,13 +47,13 @@ export default class UsersController {
 
         let procFilter:any = []
 
-        // const procFound = (await Proc.all()).map((itens) => {
-        //     if(itens.users_id === user?.id){
-        //         procFilter.push(itens)
-        //     } else {
+        const procFound = (await Proc.all()).map((itens) => {
+            if(itens.users_id === user?.id){
+                procFilter.push(itens)
+            } else {
                 
-        //     }
-        // })
+            }
+        })
 
         if(check){
             return {

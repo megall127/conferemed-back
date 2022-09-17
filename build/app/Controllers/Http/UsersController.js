@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Proc_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Proc"));
 const User_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/User"));
 class UsersController {
     async create({ request }) {
@@ -37,6 +38,13 @@ class UsersController {
         const check = await auth.use('api').authenticate();
         const user = await User_1.default.findBy('id', request.input('id'));
         let procFilter = [];
+        const procFound = (await Proc_1.default.all()).map((itens) => {
+            if (itens.users_id === user?.id) {
+                procFilter.push(itens);
+            }
+            else {
+            }
+        });
         if (check) {
             return {
                 data: {
