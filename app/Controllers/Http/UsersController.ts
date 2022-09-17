@@ -29,7 +29,10 @@ export default class UsersController {
         
         try {
         const token = await auth.use('api').attempt(email, password)
-          return token
+          return {
+            token: token,
+            user: auth.user
+          }
         } catch {
           return response.unauthorized('Invalid credentials')
         }
