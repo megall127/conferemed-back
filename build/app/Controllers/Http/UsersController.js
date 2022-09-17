@@ -38,11 +38,18 @@ class UsersController {
         const check = await auth.use('api').authenticate();
         const user = await User_1.default.findBy('id', request.input('id'));
         let procFilter = [];
+        const procFound = (await Proc_1.default.all()).map((itens) => {
+            if (itens.users_id === user?.id) {
+                procFilter.push(itens);
+            }
+            else {
+            }
+        });
         if (check) {
             return {
                 data: {
                     doctor: user,
-                    proc: Proc_1.default.all()
+                    proc: procFilter
                 }
             };
         }
