@@ -3,10 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Proc_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Proc"));
 const User_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/User"));
 class UsersController {
-    async create({ request, response }) {
+    async create({ request }) {
         const user = new User_1.default();
         user.email = request.input('email');
         user.password = request.input('password');
@@ -25,23 +24,19 @@ class UsersController {
         const password = request.input('password');
         try {
             const token = await auth.use('api').attempt(email, password);
-            return token;
+            return {
+                token: token,
+                user: auth.user
+            };
         }
         catch {
             return response.unauthorized('Invalid credentials');
         }
     }
-    async takeDocDados({ auth, request, response }) {
+    async takeDocDados({ auth, request }) {
         const check = await auth.use('api').authenticate();
         const user = await User_1.default.findBy('id', request.input('id'));
         let procFilter = [];
-        const procFound = (await Proc_1.default.all()).map((itens) => {
-            if (itens.users_id === user?.id) {
-                procFilter.push(itens);
-            }
-            else {
-            }
-        });
         if (check) {
             return {
                 data: {
@@ -64,7 +59,6 @@ class UsersController {
         }
     }
     async getAllDoctors({ auth }) {
-        const user = new User_1.default();
         const check = await auth.use('api').authenticate();
         if (check) {
             return User_1.default.all();

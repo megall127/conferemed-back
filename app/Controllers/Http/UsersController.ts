@@ -1,9 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Proc from 'App/Models/Proc'
 import User from 'App/Models/User'
 
 export default class UsersController {
-    public async create( {request, response}: HttpContextContract) {
+    public async create( {request}: HttpContextContract) {
 
         const user = new User()
 
@@ -30,13 +29,16 @@ export default class UsersController {
         
         try {
         const token = await auth.use('api').attempt(email, password)
-          return token
+          return {
+            token: token,
+            user: auth.user
+          }
         } catch {
           return response.unauthorized('Invalid credentials')
         }
     }
 
-    public async takeDocDados({ auth, request , response} : HttpContextContract){
+    public async takeDocDados({ auth, request } : HttpContextContract){
 
         const check = await auth.use('api').authenticate()
 
@@ -44,13 +46,13 @@ export default class UsersController {
 
         let procFilter:any = []
 
-        const procFound = (await Proc.all()).map((itens) => {
-            if(itens.users_id === user?.id){
-                procFilter.push(itens)
-            } else {
+        // const procFound = (await Proc.all()).map((itens) => {
+        //     if(itens.users_id === user?.id){
+        //         procFilter.push(itens)
+        //     } else {
                 
-            }
-        })
+        //     }
+        // })
 
         if(check){
             return {
@@ -80,7 +82,6 @@ export default class UsersController {
 
     public async getAllDoctors({auth}: HttpContextContract){
 
-        const user = new User()
 
         const check = await auth.use('api').authenticate()
 
