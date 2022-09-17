@@ -15,8 +15,7 @@ class default_1 extends Schema_1.default {
             table
                 .integer('users_id')
                 .unsigned()
-                .references('id')
-                .inTable('users')
+                .references('users.id')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             table.string('clinica');

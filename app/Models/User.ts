@@ -36,6 +36,8 @@ export default class User extends BaseModel {
 
   @hasMany(() => Proc)
   public proc_registers: HasMany<typeof Proc>
+
+  
   @column()
   public rememberMeToken?: string
 
