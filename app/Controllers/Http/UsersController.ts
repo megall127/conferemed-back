@@ -47,19 +47,19 @@ export default class UsersController {
 
         let procFilter:any = []
 
-        const procFound = (await Proc.all()).map((itens) => {
-            if(itens.users_id === user?.id){
-                procFilter.push(itens)
-            } else {
+        // const procFound = (await Proc.all()).map((itens) => {
+        //     if(itens.users_id === user?.id){
+        //         procFilter.push(itens)
+        //     } else {
                 
-            }
-        })
+        //     }
+        // })
 
         if(check){
             return {
                 data: {
                     doctor: user,
-                    proc: procFilter
+                    proc: Proc.all()
                 }
                
             }
