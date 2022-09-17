@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Proc_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Proc"));
 class ProcsController {
-    async create({ request, response, auth }) {
+    async create({ request, auth }) {
         const proc = new Proc_1.default();
         const check = await auth.use('api').authenticate();
         if (check) {
@@ -27,7 +27,7 @@ class ProcsController {
             return "Nao deu";
         }
     }
-    async editDados({ auth, request, response }) {
+    async editDados({ auth, request }) {
         const proc = await Proc_1.default.findOrFail(request.input("id"));
         const newStats = request.input("newStats");
         const newPayment = request.input("newPayment");

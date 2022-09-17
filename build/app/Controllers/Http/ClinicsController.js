@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Clinic_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Clinic"));
 class ClinicsController {
-    async create({ request, response }) {
+    async create({ request }) {
         const user = new Clinic_1.default();
         user.name = request.input('name');
         user.local = request.input('local');
