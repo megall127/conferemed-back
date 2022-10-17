@@ -17,9 +17,12 @@ export default class ProcsController {
         proc.convenio = request.input('convenio')
         proc.nome_paciente = request.input('nome_paciente')
         proc.nome_proc = request.input('nome_proc')
+        proc.solicitante = request.input('solicitante')
+        proc.executante = request.input('executante')
         proc.valor_repasse = request.input('valor_repasse')
         proc.quantidade = request.input('quantidade')
         proc.valor_auxiliar = request.input('valor_auxiliar')
+        proc.date_pag = request.input('date_pag')
         proc.valor_proc = request.input('valor_proc')
         proc.stats_proc = request.input('stats_proc')
         proc.stats_pay = request.input('stats_pay')
@@ -38,6 +41,7 @@ export default class ProcsController {
 
         const newStats = request.input("newStats")
         const newPayment = request.input("newPayment")
+        const newDate = request.input("newDate")
 
 
         const checkValue = (newValue: any, value: any) => {
@@ -51,7 +55,9 @@ export default class ProcsController {
         try {   
             await auth.check()
             proc.stats_proc = checkValue(newStats, proc.stats_proc);  
-            proc.stats_pay = checkValue(newPayment, proc.stats_pay);  
+            proc.stats_pay = checkValue(newPayment, proc.stats_pay);
+            proc.date_pag = checkValue(newDate, proc.date_pag);
+
             await proc?.save()
 
             return{
@@ -63,6 +69,19 @@ export default class ProcsController {
                 message: "Falhou"
             }
         }
+    }
+
+    public async getAll( {auth, request }){
+
+        const check = await auth.use('api').authenticate();
+
+
+        if(check){
+            return Proc.all()
+        } else {
+            return "Não autorizado."
+        }
+
     }
 
 

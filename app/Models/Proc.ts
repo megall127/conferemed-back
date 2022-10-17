@@ -18,6 +18,12 @@ export default class Proc extends BaseModel {
   public nome_proc: string
 
   @column()
+  public solicitante: string
+
+  @column()
+  public executante: string
+
+  @column()
   public valor_repasse: number
 
   @column()
@@ -25,6 +31,9 @@ export default class Proc extends BaseModel {
 
   @column()
   public valor_auxiliar: number
+
+  @column()
+  public date_pag: DateTime
 
   @column()
   public valor_proc: number

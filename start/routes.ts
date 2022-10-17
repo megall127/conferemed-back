@@ -21,11 +21,15 @@ Route.group(() => {
 
 
   //Proc
-
-
   Route.post('/proc', 'ProcsController.create').as('proc.create')
 
   Route.post('/procedit', 'ProcsController.editDados').as('proc.edit')
+
+  Route.post('/procAll', 'ProcsController.getAll').as('proc.all')
+
+  Route.post('/createName', 'ProcNamesController.createProcName').as('proc.name')
+
+  Route.get('/getNames', 'ProcNamesController.procNames').as('proc.allNames')
 
 
   
