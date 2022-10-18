@@ -84,5 +84,21 @@ export default class ProcsController {
 
     }
 
+    public async getinfoDados( {auth, request }){
+
+        const proc = await Proc.findOrFail(request.input("id"))
+        try {   
+            await auth.check()
+
+            return{
+                data: proc
+            }
+        } catch (error) {
+            return{
+                message: "Falhou"
+            }
+        }
+    }
+
 
 }

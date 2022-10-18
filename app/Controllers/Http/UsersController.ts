@@ -16,6 +16,7 @@ export default class UsersController {
         user.cpf = request.input('cpf')
         user.especialit = request.input('especialit')
         user.aux = request.input('aux')
+        
 
         await user.save()
 

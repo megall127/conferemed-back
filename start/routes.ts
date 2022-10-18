@@ -24,6 +24,8 @@ Route.group(() => {
   Route.post('/proc', 'ProcsController.create').as('proc.create')
 
   Route.post('/procedit', 'ProcsController.editDados').as('proc.edit')
+  
+  Route.post('/proceditdados', 'ProcsController.getinfoDados').as('proc.editDados')
 
   Route.post('/procAll', 'ProcsController.getAll').as('proc.all')
 
