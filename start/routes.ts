@@ -33,6 +33,10 @@ Route.group(() => {
 
   Route.get('/getNames', 'ProcNamesController.procNames').as('proc.allNames')
 
+  Route.post('/createConvName', 'ConvNamesController.createConvName').as('conv.name')
+
+  Route.get('/getConvNames', 'ConvNamesController.convNames').as('conv.allNames')
+
 
   
   }).prefix('api')
