@@ -24,6 +24,7 @@ export default class ProcsController {
         proc.valor_auxiliar = request.input('valor_auxiliar')
         proc.date_pag = request.input('date_pag')
         proc.valor_proc = request.input('valor_proc')
+        proc.total = request.input('total')
         proc.stats_proc = request.input('stats_proc')
         proc.stats_pay = request.input('stats_pay')
         proc.date_proc = request.input('date_proc')

@@ -50,6 +50,9 @@ export default class Proc extends BaseModel {
   @column()
   public users_id: number
 
+  @column()
+  public total: number
+
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
