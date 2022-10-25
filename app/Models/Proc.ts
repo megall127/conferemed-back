@@ -51,7 +51,7 @@ export default class Proc extends BaseModel {
   public users_id: number
 
   @column()
-  public total: number
+  public total: string
 
 
   @column.dateTime({ autoCreate: true })

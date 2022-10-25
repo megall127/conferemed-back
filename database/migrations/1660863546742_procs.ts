@@ -25,7 +25,7 @@ export default class extends BaseSchema {
       table.date('date_pag')
       table.date('date_proc')
       table.bigint('valor_proc')
-      table.bigint('total')
+      table.string('total')
       table.smallint('stats_proc')
       table.smallint('stats_pay')
 
