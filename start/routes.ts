@@ -14,6 +14,11 @@ Route.group(() => {
 
   Route.get('/checkroute', 'UsersController.checkRoute').as('user.checkroute')
 
+  Route.post('/deleteuser', 'UsersController.deleteUser').as('user.delete')
+
+  
+
+  
   //Clinic
   Route.post('/registerclinic', 'ClinicsController.create').as('clinic.create')
   

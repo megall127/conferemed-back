@@ -15,8 +15,7 @@ export default class UsersController {
         user.cidade = request.input('cidade')
         user.cpf = request.input('cpf')
         user.especialit = request.input('especialit')
-        user.aux = request.input('aux')
-        
+        user.aux = request.input('aux')    
 
         await user.save()
 
@@ -92,6 +91,25 @@ export default class UsersController {
             return User.all()
         } else {
             return 'Falhou'
+        }
+    }
+
+    public async deleteUser( {auth, request }){
+
+        const user = await User.findOrFail(request.input("id"))
+
+        try {   
+            await auth.check()
+             
+            await user?.delete()
+
+            return{
+                message: "Excluido com Sucesso!",
+            }
+        } catch (error) {
+            return{
+                message: "Falhou"
+            }
         }
     }
 }

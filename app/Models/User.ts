@@ -34,6 +34,7 @@ export default class User extends BaseModel {
   @column()
   public aux: number
 
+
   @hasMany(() => Proc)
   public proc_registers: HasMany<typeof Proc>
 
