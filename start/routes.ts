@@ -16,6 +16,10 @@ Route.group(() => {
 
   Route.post('/deleteuser', 'UsersController.deleteUser').as('user.delete')
 
+  Route.post('/useredit', 'UsersController.editDados').as('user.edit')
+
+
+
   
 
   

@@ -112,4 +112,48 @@ export default class UsersController {
             }
         }
     }
+
+    public async editDados( {auth, request }){
+
+        const user = await User.findOrFail(request.input("id"))
+
+        const newName = request.input("newName")
+        const newEmail = request.input("newEmail")
+        const newTelefone = request.input("newTelefone")
+        const newEspc = request.input("newEspc")
+
+
+        const checkValue = (newValue: any, value: any) => {
+            if(newValue === null){
+                return value
+            } else {
+                return newValue
+            }
+        } 
+
+        try {   
+            await auth.check()
+            user.name = checkValue(newName, user.name);  
+            user.email = checkValue(newEmail, user.email);
+            user.tell = checkValue(newTelefone, user.tell);
+            user.especialit = checkValue(newEspc,  user.especialit);
+ 
+
+            await user?.save()
+
+            return{
+                message: "Editado com Sucesso!",
+                data: {
+                    name: newName,
+                    email: newEmail,
+                    tell: newTelefone,
+                    espc: newEspc
+                }
+            }
+        } catch (error) {
+            return{
+                message: "Falhou"
+            }
+        }
+    }
 }
